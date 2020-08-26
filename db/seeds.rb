@@ -6,6 +6,9 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
+Artist.destroy_all
+Song.destroy_all
+
 eminem = Artist.create(name: "Eminem")
 usher = Artist.create(name: "Usher")
 nelly = Artist.create(name: "Nelly")
