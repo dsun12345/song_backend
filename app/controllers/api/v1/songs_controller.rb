@@ -7,9 +7,8 @@ class Api::V1::SongsController < ApplicationController
 
     def create
         song = Song.new(song_params)
-        byebug
         if song.save
-            render json: song, status: :accepted
+            render json: SongSerializer.new(song), status: :accepted
         else 
             render json: {errors: song.errors.full_messages}, status: :unprocessible_entity
         end 
@@ -18,7 +17,7 @@ class Api::V1::SongsController < ApplicationController
 private
 
     def song_params
-        require(:song).permit(:title, :genre, :album_url, :artist_id)
+        params.require(:song).permit(:title, :genre, :album_url, :artist_id)
     end 
 
 end
