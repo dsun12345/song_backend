@@ -7,6 +7,7 @@ class Api::V1::SongsController < ApplicationController
 
     def create
         song = Song.new(song_params)
+        byebug
         if song.save
             render json: song, status: :accepted
         else 

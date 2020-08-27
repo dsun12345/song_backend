@@ -15,12 +15,15 @@ require "rails/all"
 # # require "sprockets/railtie"
 # require "rails/test_unit/railtie"
 
+
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
 
 module SongBackend
   class Application < Rails::Application
+    Rails.application.config.action_controller.forgery_protection_origin_check = false
+    config.action_controller.allow_forgery_protection = false
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 6.0
 
