@@ -14,6 +14,15 @@ class Api::V1::SongsController < ApplicationController
         end 
     end 
 
+    def update
+        song = Song.find_by(id:params[:id])
+        if song
+            songedit = song.update(song_params)
+            render json: SongSerializer.new(songedit), status: :accepted
+        else
+            render json: {errors: song.errors.full_messages}, status: :unprocessible_entity
+        end 
+    end 
 private
 
     def song_params
