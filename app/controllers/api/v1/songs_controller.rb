@@ -17,8 +17,8 @@ class Api::V1::SongsController < ApplicationController
     def update
         song = Song.find_by(id:params[:id])
         if song
-            songedit = song.update(song_params)
-            render json: SongSerializer.new(songedit), status: :accepted
+            song.update(song_params)
+            render json: SongSerializer.new(song), status: :accepted
         else
             render json: {errors: song.errors.full_messages}, status: :unprocessible_entity
         end 
@@ -26,7 +26,7 @@ class Api::V1::SongsController < ApplicationController
 private
 
     def song_params
-        params.require(:song).permit(:title, :genre, :album_url, :artist_id)
+        params.require(:song).permit(:title, :genre, :album_url, :artist_id, :id)
     end 
 
 end
